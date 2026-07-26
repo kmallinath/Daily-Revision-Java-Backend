@@ -47,6 +47,14 @@ class Streams1
 
         List<String> ans6= Arrays.stream(s2.split(" ")).filter(x->countVowels(x)).collect(Collectors.toList());;
         System.out.println(ans6);
+
+        //Divide integer list to even and odd
+        ArrayList<Integer> al=new ArrayList<Integer>(Arrays.asList(1,2,3,4,5,6,7,8,9,10,33,44,11,13,23,66));
+
+        Map<Boolean,List<Integer>> listMap= al.stream().collect(Collectors.partitioningBy(x->x%2==0,Collectors.toList()));
+        System.out.println(listMap.get(true));
+
+        al.stream().collect(Collectors.partitioningBy(x->x%2==0,Collectors.toList())).entrySet().forEach(x->System.out.println(x.getValue()));
     }
 
     private static boolean countVowels(String x) {
