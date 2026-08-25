@@ -30,6 +30,11 @@ public class RoomController {
     @PostMapping
     public ResponseEntity<?> createRoom(@RequestBody String roomId) {
 
+        System.out.println("========== CREATE ROOM CALLED ==========");
+        System.out.println("ROOM ID RECEIVED: [" + roomId + "]");
+
+
+
         if (roomRepository.findByRoomId(roomId) != null) {
             //room is already there
             return ResponseEntity.badRequest().body("Room already exists!");
@@ -40,7 +45,9 @@ public class RoomController {
         //create new room
         Room room = new Room();
         room.setRoomId(roomId);
+        System.out.println("BEFORE SAVE: " + room.getRoomId());
         Room savedRoom = roomRepository.save(room);
+        System.out.println("AFTER SAVE: " + savedRoom.getId());
         return ResponseEntity.status(HttpStatus.CREATED).body(room);
 
 

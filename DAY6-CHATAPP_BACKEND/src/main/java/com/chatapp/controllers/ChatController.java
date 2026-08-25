@@ -33,7 +33,7 @@ public class ChatController {
     @SendTo("/topic/room/{roomId}")//subscribe
     public Message sendMessage(
             @DestinationVariable String roomId,
-            @RequestBody MessageRequest request
+            MessageRequest request
     ) {
 
         Room room = roomRepository.findByRoomId(request.getRoomId());
